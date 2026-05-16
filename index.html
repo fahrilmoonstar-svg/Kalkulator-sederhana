@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- IDENTITAS PENGEMBANG -->
+    <meta name="author" content="Fahril PROJECT - Web & System Developer">
+    <meta name="copyright" content="© 2026 Fahril PROJECT. All Rights Reserved.">
+    <meta name="description" content="Aplikasi Kalkulator Web buatan Fahril PROJECT">
+    
+    <title>Kalkulator Web | Fahril PROJECT</title>
+    <style>
+        /* ==================================================
+           STYLE DESAIN OLEH: FAHRIL PROJECT
+           HAK CIPTA © 2026
+        ================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 35px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            margin-bottom: 10px;
+            font-size: 24px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .dev-badge {
+            text-align: center;
+            background: linear-gradient(135deg, #ffd700, #ffb700);
+            color: #000;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #ffd700;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ffd700, #ffb700);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .hasil-box {
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 18px;
+            border-left: 4px solid #ffd700;
+            display: none;
+        }
+
+        .hasil-item {
+            padding: 6px 0;
+            font-size: 15px;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .hasil-item:last-child {
+            border-bottom: none;
+        }
+
+        .footer-dev {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 11px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🧮 KALKULATOR WEB</h1>
+        <div class="dev-badge">
+            DIKEMBANGKAN OLEH: FAHRIL PROJECT
+        </div>
+
+        <div class="form-group">
+            <label for="angka1">Ketikan angka pertama :</label>
+            <input type="number" id="angka1" placeholder="Contoh: 10" required>
+        </div>
+
+        <div class="form-group">
+            <label for="angka2">Ketikan angka kedua :</label>
+            <input type="number" id="angka2" placeholder="Contoh: 5" required>
+        </div>
+
+        <button onclick="hitungProses()">HITUNG SEKARANG</button>
+
+        <div class="hasil-box" id="hasilKalkulasi">
+            <div class="hasil-item" id="tambah"></div>
+            <div class="hasil-item" id="kurang"></div>
+            <div class="hasil-item" id="kali"></div>
+            <div class="hasil-item" id="bagi"></div>
+        </div>
+
+        <div class="footer-dev">
+            © 2026 Fahril PROJECT • Semua Hak Cipta Dilindungi<br>
+            Dibuat dengan ❤️ oleh Fahril - System Developer
+        </div>
+    </div>
+
+    <script>
+        // KODE JAVASCRIPT OLEH: FAHRIL PROJECT
+        function hitungProses() {
+            let a = parseInt(document.getElementById('angka1').value);
+            let b = parseInt(document.getElementById('angka2').value);
+
+            if(isNaN(a) || isNaN(b)) {
+                alert("⚠️ Mohon isi angka yang benar!");
+                return;
+            }
+
+            document.getElementById('tambah').innerText = `Hasil ${a} + ${b} = ${a+b}`;
+            document.getElementById('kurang').innerText = `Hasil ${a} - ${b} = ${a-b}`;
+            document.getElementById('kali').innerText = `Hasil ${a} * ${b} = ${a*b}`;
+            document.getElementById('bagi').innerText = `Hasil ${a} / ${b} = ${(a/b).toFixed(2)}`;
+
+            document.getElementById('hasilKalkulasi').style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
